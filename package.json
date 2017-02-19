@@ -1,7 +1,7 @@
 {
   "name": "react-expressions-baidu",
   "version": "1.0.0",
-  "description": "",
+  "description": "A React Component about Baidu Expressions.",
   "main": "index.js",
   "scripts": {
     "build": "rimraf lib && babel src --copy-files --source-maps --out-dir lib",
