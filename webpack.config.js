@@ -1,31 +1,102 @@
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-    entry: path.join(__dirname, 'example', 'src', 'app.js'),
-    output: {
-        filename: 'bundle.js'
-    },
     module: {
-
-        rules: [
-            {
-                test: /\.js$/,
+        rules: [{
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['stage-0', 'es2015', 'react']
+                    presets: [
+                        'react',
+                        'env'
+                    ]
                 }
-                
+            },
+            {
+                test: /\.scss$/,
+                use: [{
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "sass-loader"
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('postcss-cssnext')
+                            ]
+                        }
+                    }
+                ],
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192
+                    }
+                }]
             }
-
-
         ]
-
     },
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'example'),
+        historyApiFallback: true,
+        port: 3000,
+        contentBase: [
+            './example'
+        ],
         inline: true,
-        port: 3000
+        publicPath: '/'
     }
+}
+
+if (process.env.NODE_ENV === 'production') {
+
+    module.exports.entry = path.resolve(__dirname, './src/index.js');
+
+    module.exports.output = {
+        path: path.resolve(__dirname, './lib'),
+        filename: 'react-expressions-baidu.js',
+        library: 'react-expressions-baidu',
+        libraryTarget: 'umd'
+    };
+
+    module.exports.externals = ['react'];
+
+    module.exports.devtool = 'source-map';
+
+    module.exports.plugins = (module.exports.plugins || []).concat([
+
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true
+        })
+    ]);
+
+} else {
+
+    module.exports.entry = path.resolve(__dirname, './example/app.jsx');
+
+    module.exports.output = {
+        filename: 'bundle.js'
+    };
+
 }

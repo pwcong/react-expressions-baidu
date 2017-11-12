@@ -1,0 +1,13 @@
+:local .baidu-expressions-picker {
+    box-sizing: border-box;
+    padding: 4px;
+}
+
+:local .baidu-expressions-symbol {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

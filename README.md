@@ -12,9 +12,9 @@ npm install --save react-expressions-baidu
 
 ```
 import { 
-    Picker, 
+    BaiduExpressionsPicker, 
     isSymbol, 
-    convertSymbolToReactDOMNode 
+    convertSymbol 
 } from 'react-expressions-baidu';
 
 ...
@@ -34,28 +34,16 @@ render(){
 
     ...
 
-    <Picker 
-        col={10}
-        padding={4}
-        onItemClick={this.handleAddSymbol} />
+    <BaiduExpressionsPicker
+        onSymbolClick={this.handleAddSymbol} />
 
-    <ul>
+    <div>
 
         {
-            this.state.symbols.map( symbol => {
-
-                return (
-                    <li key={Math.random()}>
-                        // create a ReactDom Node
-                        { convertSymbolToReactDOMNode(symbol) }
-
-                    </li>
-                )
-
-            })
+            this.state.symbols.map(symbol => convertSymbol(symbol))
         }
 
-    </ul>
+    </div>
 
 }
 
@@ -64,17 +52,16 @@ render(){
 
 # API
 
-## Picker [ react component ]
+## BaiduExpressionsPicker [ react component ]
 
 props:
 
-* col [ number ]
-* padding [ number ]
+* pickerClass [ string ]
+* symbolClass [ string ]
 * onItemClick [ func ]
 
 ## isSymbol [ func | string -> bool ]
 
 check if `str` is a valid symbol.
 
-## convertSymbolToReactDOMNode [ func | string -> ReactDOM Node ]
-
+## convertSymbol [ func | symbol[string], key[string(option)] -> ReactDOM Node ]
