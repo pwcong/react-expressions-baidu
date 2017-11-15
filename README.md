@@ -3,12 +3,12 @@
 # react-expressions-baidu
 A React Component about Baidu Expressions.
 
-# Install
+## Install
 ```
 npm install --save react-expressions-baidu
 ```
 
-# Usage
+## Usage
 
 ```
 import { 
@@ -50,18 +50,18 @@ render(){
 
 ```
 
-# API
+## API
 
-## BaiduExpressionsPicker [ react component ]
+* BaiduExpressionsPicker [ react component ]
 
-props:
+    props:
 
-* pickerClass [ string ]
-* symbolClass [ string ]
-* onItemClick [ func ]
+    * pickerClass [ string ]
+    * symbolClass [ string ]
+    * onItemClick [ func ]
 
-## isSymbol [ func | string -> bool ]
+* isSymbol [ func | str[string] -> bool ]
 
-check if `str` is a valid symbol.
+    check if `str` is a valid symbol.
 
-## convertSymbol [ func | symbol[string], key[string(option)] -> ReactDOM Node ]
+* convertSymbol [ func | symbol[string], key[string(option)] -> ReactDOM Node ]
