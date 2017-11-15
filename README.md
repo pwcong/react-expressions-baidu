@@ -58,7 +58,7 @@ render(){
 
     * pickerClass [ string ]
     * symbolClass [ string ]
-    * onItemClick [ func ]
+    * onSymbolClick [ func ]
 
 * isSymbol [ func | str[string] -> bool ]
 
