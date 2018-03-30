@@ -1,4 +1,4 @@
-![](http://i1.piimg.com/567571/ed9de13efe043b12.gif)
+![preview](https://github.com/pwcong/SnapShot/blob/master/react-expressions/demo.gif?raw=true)
 
 # react-expressions-baidu
 A React Component about Baidu Expressions.
